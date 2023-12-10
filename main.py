@@ -8,7 +8,9 @@ def create_connection():
 
 
 def get_hypervisors(conn):
-    return list(conn.compute.hypervisors())
+    all_hypervisors = list(conn.compute.hypervisors())
+    enabled_hypervisors = [hypervisor for hypervisor in all_hypervisors if hypervisor.status == 'enabled']
+    return enabled_hypervisors
 
 
 def get_l3hyperviors(conn):
